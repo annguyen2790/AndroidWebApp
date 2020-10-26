@@ -11,6 +11,7 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
 
     PageControlFragment controlFragment = new PageControlFragment();
     PageViewerFragment viewerFragment = new PageViewerFragment();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +26,6 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
 
     @Override
     public void onPush(CharSequence input) {
-
         WebView webView = viewerFragment.v.findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient( new WebViewClient(){
@@ -38,5 +38,24 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
         });
         webView.loadUrl(input.toString());
 
+    }
+
+    @Override
+    public void onForward() {
+        WebView webView = viewerFragment.v.findViewById(R.id.webView);
+        webView.getSettings().setJavaScriptEnabled(true);
+        if(webView.canGoForward()){
+            webView.goForward();
+        }
+
+    }
+
+    @Override
+    public void onBackward() {
+        WebView webView = viewerFragment.v.findViewById(R.id.webView);
+        webView.getSettings().setJavaScriptEnabled(true);
+        if(webView.canGoBack()){
+            webView.goBack();
+        }
     }
 }

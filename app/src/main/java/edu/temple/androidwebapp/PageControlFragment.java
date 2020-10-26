@@ -24,6 +24,8 @@ public class PageControlFragment extends Fragment {
 
     public interface PageControlListener{
         void onPush(CharSequence input);
+        void onForward();
+        void onBackward();
     }
     public PageControlFragment() {
         // Required empty public constructor
@@ -40,11 +42,27 @@ public class PageControlFragment extends Fragment {
         back = v.findViewById(R.id.backward);
         okButton = v.findViewById(R.id.ok_button);
         urlText = v.findViewById(R.id.editTextURL);
+        /*Go button to go to specified URL*/
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CharSequence input = urlText.getText();
                 controlListener.onPush(input);
+            }
+        });
+        /*Navigate to the next clicked page*/
+        forward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                controlListener.onForward();
+            }
+        });
+
+        /*Navigate back to previous page*/
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                controlListener.onBackward();
             }
         });
         return v;
