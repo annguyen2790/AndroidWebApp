@@ -2,6 +2,7 @@ package edu.temple.androidwebapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -31,9 +32,14 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
         webView.setWebViewClient( new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-
                 view.loadUrl(url);
                 return true;
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                controlFragment.urlText.setText(url);
             }
         });
         webView.loadUrl(input.toString());
@@ -44,6 +50,13 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
     public void onForward() {
         WebView webView = viewerFragment.v.findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                controlFragment.urlText.setText(url);
+            }
+        });
         if(webView.canGoForward()){
             webView.goForward();
         }
@@ -54,6 +67,13 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
     public void onBackward() {
         WebView webView = viewerFragment.v.findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                controlFragment.urlText.setText(url);
+            }
+        });
         if(webView.canGoBack()){
             webView.goBack();
         }
