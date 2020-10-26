@@ -3,6 +3,8 @@ package edu.temple.androidwebapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 public class BrowserActivity extends AppCompatActivity implements PageControlFragment.PageControlListener {
@@ -23,7 +25,18 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
 
     @Override
     public void onPush(CharSequence input) {
-        TextView tv = viewerFragment.v.findViewById(R.id.textViewTest);
-        tv.setText(input);
+
+        WebView webView = viewerFragment.v.findViewById(R.id.webView);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebViewClient( new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
+                view.loadUrl(url);
+                return true;
+            }
+        });
+        webView.loadUrl(input.toString());
+
     }
 }
