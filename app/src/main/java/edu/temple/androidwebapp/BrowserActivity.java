@@ -26,6 +26,17 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        setContentView(R.layout.activity_browser);
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.page_control, controlFragment)
+                .add(R.id.page_viewer, viewerFragment)
+                .commit();
+    }
+
+    @Override
     public void onPush(CharSequence input) {
         WebView webView = viewerFragment.v.findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
