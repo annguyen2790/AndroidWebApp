@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/page_control"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PageControlFragment" >
+
+    <Button
+        android:id="@+id/backward"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="4dp"
+        android:text="@string/empty"
+        android:background="@drawable/undo"
+        app:layout_constraintEnd_toStartOf="@+id/ok_button"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/forward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:text="@string/empty"
+        android:background="@drawable/rightarrow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/ok_button"
+        android:layout_width="41dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/go"
+        android:text="@string/empty"
+        app:layout_constraintEnd_toStartOf="@+id/forward"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextURL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+
+        android:ems="10"
+        android:hint="https://temple.edu"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

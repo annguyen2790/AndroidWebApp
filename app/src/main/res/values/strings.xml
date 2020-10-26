@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AndroidWebApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="empty">""</string>
+    <string name="button_ok">ok_button</string>
+    <string name="forward_button">forward_button</string>
+    <string name="backward_button">backward_button</string>
+
+</resources>
