@@ -45,7 +45,6 @@
         android:layout_marginTop="4dp"
 
         android:ems="10"
-        android:hint="https://temple.edu"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/backward"
         app:layout_constraintStart_toStartOf="parent"

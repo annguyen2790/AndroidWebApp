@@ -3,6 +3,7 @@ package edu.temple.androidwebapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -12,22 +13,31 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
 
     PageControlFragment controlFragment = new PageControlFragment();
     PageViewerFragment viewerFragment = new PageViewerFragment();
+    WebView viewWeb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browser);
+        if(savedInstanceState == null){
+            addFragments();
+        }else{
+            controlFragment = (PageControlFragment)getSupportFragmentManager().findFragmentByTag("TAG1");
+            viewerFragment = (PageViewerFragment)getSupportFragmentManager().findFragmentByTag("TAG2");
+            getSupportFragmentManager().beginTransaction().replace(R.id.page_control, controlFragment).replace(R.id.page_viewer, viewerFragment).commit();
 
-        addFragments();
 
+
+        }
 
 
     }
 
+
     public void addFragments(){
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.page_control, controlFragment)
-                .add(R.id.page_viewer, viewerFragment)
+                .add(R.id.page_control, controlFragment, "TAG1")
+                .add(R.id.page_viewer, viewerFragment, "TAG2")
                 .commit();
     }
 
@@ -45,7 +55,6 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
         webView.setWebViewClient( new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-
                 view.loadUrl(url);
                 return true;
             }
@@ -54,6 +63,7 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
                 super.onPageStarted(view, url, favicon);
                 controlFragment.urlText.setText(url);
             }
+
 
 
         });

@@ -1,9 +1,11 @@
 package edu.temple.androidwebapp;
 
 import android.content.Context;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -31,6 +33,20 @@ public class PageControlFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setRetainInstance(true);
+        if(savedInstanceState != null){
+            controlListener = (BrowserActivity)getActivity();
+        }
+    }
 
 
     @Override
@@ -68,6 +84,7 @@ public class PageControlFragment extends Fragment {
         return v;
     }
 
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -83,4 +100,5 @@ public class PageControlFragment extends Fragment {
         super.onDetach();
         controlListener = null;
     }
+
 }
