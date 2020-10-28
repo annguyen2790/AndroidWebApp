@@ -35,9 +35,7 @@ public class PageViewerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        if(savedInstanceState != null){
-            //let android do its magic retaining fragment!
-        }else {
+        if(savedInstanceState == null) {
             v = inflater.inflate(R.layout.fragment_page_viewer, container, false);
         }
         return v;
