@@ -26,14 +26,11 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
             viewerFragment = (PageViewerFragment)getSupportFragmentManager().findFragmentByTag("TAG2");
             getSupportFragmentManager().beginTransaction().replace(R.id.page_control, controlFragment).replace(R.id.page_viewer, viewerFragment).commit();
 
-
-
         }
 
 
     }
-
-
+    
     public void addFragments(){
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.page_control, controlFragment, "TAG1")
